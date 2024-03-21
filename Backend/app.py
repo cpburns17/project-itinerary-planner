@@ -7,10 +7,9 @@ from flask_cors import CORS
 import requests;
 # from dotenv import dotenv_values
 # from flask_bcrypt import Bcrypt;
-# from dotenv import dotenv_values
 from models import db, User, Trips
 
-db = SQLAlchemy()
+
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///app.db"
@@ -18,7 +17,7 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 # app.secret_key = config['']
 # app.json.compact = False
 # bcrypt = Bcrypt(app)
-# migrate = Migrate(app, db)
+migrate = Migrate(app, db)
 
 
 db.init_app(app)

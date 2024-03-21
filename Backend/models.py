@@ -1,8 +1,7 @@
-from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
 from sqlalchemy.orm import validates
-from sqlalchemy.ext.associationproxy import association_proxy
+# from sqlalchemy.ext.associationproxy import associatpipenion_proxy
 from sqlalchemy_serializer import SerializerMixin
 
 
@@ -17,20 +16,24 @@ class User(db.Model, SerializerMixin):
     __tablename__ = 'user_table'
 
     id = db.Column(db.Integer, primary_key = True)
-    fName = db.Column(db.String, nullable = False)
-    lName = db.Column(db.String, nullable = False)
+    first = db.Column(db.String, nullable = False)
+    last = db.Column(db.String, nullable = False)
     email = db.Column(db.String)
-    userName = db.Column(db.String, nullable = False)
+    username = db.Column(db.String, nullable = False)
     password = db.Column(db.String, nullable = False)
+    itinerary = db.Column(db.String)
+
+    trips = db.relationship('Trips', back_populates='user')
 
 
-class Trips(db.Modal, SerializerMixin):
+
+class Trips(db.Model, SerializerMixin):
     __tablename__ = 'trips_table'
 
     id = db.Column(db.Integer, primary_key = True)
     place = db.Column(db.String, nullable = False)
     groupType = db.Column(db.String)
-    groupSize = db.Column(db.String)
+    groupSize = db.Column(db.Integer)
     dates = db.Column(db.Integer, nullable = False)
 
     food = db.Column(db.String)
@@ -46,6 +49,9 @@ class Trips(db.Modal, SerializerMixin):
     hotelRating = db.Column(db.Integer)
     hotelLocation = db.Column(db.String)
 
+    user_id = db.Column(db.Integer, db.ForeignKey('user_table.id'))
+
+    user = db.relationship('User', back_populates = 'trips')
     
 
 
