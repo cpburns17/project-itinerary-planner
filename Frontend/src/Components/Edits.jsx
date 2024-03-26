@@ -1,17 +1,16 @@
 import {React} from 'react'
 
 
-function Login() {
+function Edits() {
 
-return (
+return(
 
     <div>
 
-
     </div>
 
-);
+)
 
-};
+}
 
-export default Login;
+export default Edits;
