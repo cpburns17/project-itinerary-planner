@@ -25,6 +25,10 @@ return(
             <input> "mm/dd/yyyy - mm/dd/yyyy" </input>
         </div>
         <div>
+            <p> At what time do you arrive and at what time do you leave? </p>
+            <input> arrival: "hh:mm am/pm" departing: "hh:mm am/pm" </input>
+        </div>
+        <div>
             <p> How many people are in your group?</p>
             <input> Enter # of people</input>
         </div>
@@ -42,10 +46,9 @@ return(
         <div>
             <h2>Food:</h2>
             <p>What type(s) of cuisine are you interested in?</p>
+            <select> Breakfast, Lunch and/or Dinner </select>
             <input> Enter types of cuisine (ex: Mediterannian, Seafood, Mexican) </input>
-
-            <p> And for what meals?</p>
-            <input> Breakfast, Lunch, and/or Dinner? </input>
+            <select> Select price range: $, $$, $$$ </select>
         </div>
         <div>
             <h2> Entertainment:</h2>

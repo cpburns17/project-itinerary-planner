@@ -21,9 +21,12 @@ class User(db.Model, SerializerMixin):
     email = db.Column(db.String)
     username = db.Column(db.String, nullable = False)
     password = db.Column(db.String, nullable = False)
-    itinerary = db.Column(db.String)
+    # itinerary = db.Column(db.String)
 
     trips = db.relationship('Trips', back_populates='user')
+    hotels = db.relationship('Hotels', back_populates='user')
+    flights = db.relationship('Flights', back_populates='user')
+    cards = db.relationship('Cards', back_populates='user')
 
 
 
@@ -41,17 +44,50 @@ class Trips(db.Model, SerializerMixin):
     nightlife = db.Column(db.String)
     culture = db.Column(db.String)
 
+    user_id = db.Column(db.Integer, db.ForeignKey('user_table.id'))
+    user = db.relationship('User', back_populates = 'trips')
+
+
+
+
+class Flights(db.Model, SerializerMixin):
+    __tablename__ = 'flights_table'
+
+    id = db.Column(db.Integer, primary_key = True)
     flightPrice = db.Column(db.Integer)
     flightStops = db.Column(db.Integer)
     flightAirline = db.Column(db.String)
+
+    user_id = db.Column(db.Integer, db.ForeignKey('user_table.id'))
+    user = db.relationship('User', back_populates = 'flights')
+
+
+
+
+class Hotels(db.Model, SerializerMixin):
+    __tablename__ = 'hotels_table'
+
+    id = db.Column(db.Integer, primary_key = True)
 
     hotelPrice = db.Column(db.Integer)
     hotelRating = db.Column(db.Integer)
     hotelLocation = db.Column(db.String)
 
-    user_id = db.Column(db.Integer, db.ForeignKey('user_table.id'))
+    creditCard = db.Column(db.String)
 
-    user = db.relationship('User', back_populates = 'trips')
+    user_id = db.Column(db.Integer, db.ForeignKey('user_table.id'))
+    user = db.relationship('User', back_populates = 'hotels')
     
 
+
+class Cards(db.Model, SerializerMixin):
+    __tablename__ = 'credit_cards_table'
+
+    id = db.Column(db.Integer, primary_key = True)
+
+    cardName = db.Column(db.String, nullable = False)
+    points = db.Column(db.Integer)
+
+    user_id = db.Column(db.Integer, db.ForeignKey('user_table.id'))
+    user = db.relationship('User', back_populates = 'cards')
 
