@@ -1,4 +1,5 @@
 import {React} from 'react'
+import Prompt from './Prompt'
 
 
 function Home() {
@@ -6,9 +7,11 @@ function Home() {
 
     
 return (
-    <div>
 
+    <div>
+        <Prompt />
     </div>
+    
 );
 
 };

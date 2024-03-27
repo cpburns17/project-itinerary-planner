@@ -35,14 +35,19 @@ class Trips(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key = True)
     place = db.Column(db.String, nullable = False)
-    groupType = db.Column(db.String)
-    groupSize = db.Column(db.Integer)
-    dates = db.Column(db.Integer, nullable = False)
+    # groupType = db.Column(db.String, nullable = False)
+    groupSize = db.Column(db.Integer, nullable = False)
+    arriveDate = db.Column(db.Integer)
+    departDate = db.Column(db.Integer)
+    arriveTime = db.Column(db.Integer)
+    departTime = db.Column(db.Integer)
 
     food = db.Column(db.String)
     entertainment = db.Column(db.String)
     nightlife = db.Column(db.String)
     culture = db.Column(db.String)
+
+    itinerary = db.Column(db.String)
 
     user_id = db.Column(db.Integer, db.ForeignKey('user_table.id'))
     user = db.relationship('User', back_populates = 'trips')
